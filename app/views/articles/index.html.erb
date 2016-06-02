@@ -1,0 +1,38 @@
+<h1>Listing articles</h1>
+<%if current_user.nil?%>
+  <% elsif current_user.try(:admin?) || current_user.email == "admin@admin.com" %>
+  <%= link_to 'New article', new_article_path %>
+ <%end%>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="2"></th>
+  </tr>
+ 
+  <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= article.text %></td>
+      <td><%= link_to 'Show', article_path(article) %></td>
+      <%if current_user.nil?%>
+
+      <%elsif current_user.try(:admin?)|| current_user.email == "admin@admin.com"%>
+        <td><%= link_to 'Edit', edit_article_path(article) %></td>
+        <td><%= link_to 'Destroy', article_path(article),
+			method: :delete,
+                        data: {confirm: 'Are you sure?' } %></td> 
+      <%end%>
+    </tr>
+  <% end %>
+</table>
+
+
+<%if current_user.nil?%>
+
+<%elsif current_user.try(:admin?) || current_user.email == "admin@admin.com"%>
+  <%= link_to 'Admin', admin_comments_path%>
+<%end%>
+
+<%= link_to "Login Here", new_user_session_path unless user_signed_in? %>
+<%= link_to "Logout", destroy_user_session_path, :method => :delete if user_signed_in? %>
