@@ -7,6 +7,10 @@
 # Ignore bundler config.
 /.bundle
 
+#ignore files with mail credentials for the mailer
+.env
+Procfile
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal

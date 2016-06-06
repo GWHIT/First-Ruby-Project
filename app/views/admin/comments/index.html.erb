@@ -1,3 +1,4 @@
+<%if current_user.nil?%>
 <%if current_user.try(:admin?) || current_user.email == "admin@admin.com"%>
   <h1>Listing Comments</h1>
 
@@ -24,12 +25,12 @@
         </td>
       </tr>
     <% end %>
-  </table
-  
+  </table>
   <%else%>
     <h1>  Access not allowed </h1>
-<%end%>
-
-
+  <%end%>
 
 <%= link_to 'Back', articles_path %>
+
+
+

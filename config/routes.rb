@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  resources :users
     resources :articles do
         resources :comments
     end
@@ -12,12 +13,14 @@ Rails.application.routes.draw do
   root 'welcome#index'
   resources :comments
   namespace :admin do
-      resources :comments
+      resources :comments, :users
   end
 
   namespace :api do
     resources :comments, :articles
   end
+
+
 
     
   #resources :admin do

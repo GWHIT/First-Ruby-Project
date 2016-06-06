@@ -14,12 +14,20 @@ gem 'coffee-rails', '~> 4.1.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
+#mailcatcher catches mail and tores it for display at (i believe) http://localhost:1025/
+# CANNOT USE gem 'mailcatcher' as it will conflict with applications, instead look up fix regarding rvm and mailcatcher
+
+
+# Using foreman you can declare the various processes that are needed to run your application using a Procfile
+# basically you need this for the email password reset
+# Heroku recommends using this. This will allow us to use our .env file by accessing the local variables before starting the application.
+# We are already using Heroku for production so we should only install Foreman for testing and development
+group :development, :test do
+  gem'foreman'
+end
+
 #Paginates information
 gem 'will_paginate'
-
-#adds admin capabilities
-#Foreman helps setup environment
-gem 'foreman'
 
 #Stronger Authentication System
 gem 'devise'
@@ -31,6 +39,10 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
+
+#adds in heroku
+gem 'heroku'
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
